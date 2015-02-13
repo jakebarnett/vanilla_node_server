@@ -1,0 +1,24 @@
+{
+  "name": "vanilla_server_simple_persistence",
+  "version": "0.0.1",
+  "description": "a simple server with simple persistence using vanilla node",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^2.0.0",
+    "chai-http": "^1.0.0",
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-simple-mocha": "^0.4.0",
+    "jshint": "^2.6.0",
+    "mocha": "^2.1.0"
+  }
+}
