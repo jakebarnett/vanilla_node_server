@@ -17,11 +17,10 @@ describe('the delete request' , function () {
     fs.writeFile("./data/test.json" , testData, function(err) {
       if (err) throw err;
     });
+    fs.readdir('./data' , function (err, files) {
+      numberOfFiles = files.length;
+    });
     done();
-  });
-
-  fs.readdir('./data' , function (err, files) {
-    numberOfFiles = files.length;
   });
 
   it('should remove a file' , function(done) {
@@ -30,6 +29,7 @@ describe('the delete request' , function () {
     .end(function (err, res) {
       fs.readdir('./data' , function (err, files) {
         var newNumberOfFiles = files.length;
+        expect(numberOfFiles - 1).to.eql(newNumberOfFiles)
         done();
       });
     });
