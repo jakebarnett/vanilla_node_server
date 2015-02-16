@@ -4,13 +4,11 @@ require('../lib/server.js');
 var chai = require('chai');
 var chaihttp = require('chai-http');
 var fs = require('fs');
+var expect = chai.expect;
 
 chai.use(chaihttp);
 
-var expect = chai.expect;
-var dataString;
-
-describe('the get request' , function () {
+describe('the put request', function () {
 
   before (function (done) {
     var testData = '{"name":"bassnectar", "color":"black"}';
@@ -20,22 +18,19 @@ describe('the get request' , function () {
     done();
   });
 
-  it('should respond with a json string of the file contents' , function (done) {
+  it('should overwrite an existing file or create a new one' , function (done) {
     chai.request('localhost:3000')
-    .get('/penguins/test')
-    .end(function(err, res) {
-      fs.readFile('./data/test.json' , function (err, data) {
-        dataString = data.toString('utf-8');
-        expect(res.text).to.eql(dataString);
-        done();
-      });
+    .put('/penguins/test')
+    .send({name : "deadmau5"})
+    .end( function (err, res) {
+      expect(res.text).to.eql('{"name":"deadmau5"}');
+      done();
     });
   });
 
   after ( function (done) {
-    fs.unlinkSync("./data/test.json");
+    fs.unlink("./data/test.json");
     done();
   });
 
 });
-
